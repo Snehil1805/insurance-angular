@@ -9,8 +9,8 @@ import { InsuranceService } from '../services/insurance.service';
   styleUrls: ['./insurance-list.component.css'],
 })
 export class InsuranceListComponent implements OnInit {
-  filteredInsurance$: Observable<Insurance[]> = of([]);
-  insurance$: Observable<Insurance[]> = of([]);
+  insurances$: Observable<Insurance[]> = of([]);
+  filteredInsurances$: Observable<Insurance[]> = of([]);
 
   constructor(private insuranceService: InsuranceService) {}
 
@@ -19,32 +19,28 @@ export class InsuranceListComponent implements OnInit {
   }
 
   getInsurances() {
-    this.insurance$ = this.insuranceService.getInsurances();
-    this.filteredInsurance$ = this.insurance$;
-    if (this.filteredInsurance$) {
-      let insuranceArray;
-      this.filteredInsurance$.subscribe((insu) => {
-        insuranceArray = insu;
-        if (insuranceArray) {
-          const Array = JSON.stringify(insuranceArray);
-          localStorage.setItem('InsuranceData', Array);
-        }
-      });
-    }
+    this.insurances$ = this.insuranceService.getInsurances();
+    this.filteredInsurances$ = this.insurances$;
+
+    this.filteredInsurances$.subscribe((insuranceArray) => {
+      if (insuranceArray) {
+        localStorage.setItem('InsuranceData', JSON.stringify(insuranceArray));
+      }
+    });
   }
 
   searchInsurance(event: any) {
     const searchTerm = event.target.value.trim();
     if (!searchTerm) {
-      this.filteredInsurance$ = this.insurance$;
-      return;
+      this.filteredInsurances$ = this.insurances$;
+    } else {
+      this.filteredInsurances$ = this.insurances$.pipe(
+        map((insuranceArray) => {
+          return insuranceArray.filter((insurance) => {
+            return insurance.policyNumber.toString().includes(searchTerm);
+          });
+        })
+      );
     }
-    this.filteredInsurance$ = this.insurance$.pipe(
-      map((events) => {
-        return events.filter((event) =>
-          event.policyNumber.toString().includes(searchTerm)
-        );
-      })
-    );
   }
 }

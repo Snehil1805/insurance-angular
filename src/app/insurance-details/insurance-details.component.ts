@@ -10,19 +10,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./insurance-details.component.css'],
 })
 export class InsuranceDetailsComponent implements OnInit {
-  insurance$: Observable<Insurance[]> = of([]);
+  insurances$: Observable<Insurance[]> = of([]);
+
   constructor(
     private insuranceService: InsuranceService,
     private route: ActivatedRoute
   ) {}
+
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       // Access parameters from the URL
       const id = params['id']; // Assuming your parameter is named 'id'
-      this.getProfessor(id);
+      this.insurances$ = this.insuranceService.getInsurance(id.toString());
     });
-  }
-  getProfessor(id: any) {
-    this.insurance$ = this.insuranceService.getInsurance(id.toString());
   }
 }

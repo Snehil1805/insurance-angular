@@ -19,6 +19,16 @@
       "policyStartDate": "2024-04-04",
       "policyEndDate": "2024-05-08",
       "benefits": "hhhh"
+    },
+    {
+      "id": "98db",
+      "policyNumber": "bbb",
+      "policyHolder": "sadg",
+      "type": "Home Insurance",
+      "premiumAmount": 45,
+      "policyStartDate": "2024-04-04",
+      "policyEndDate": "2024-05-08",
+      "benefits": "hf"
     }
   ]
 }
