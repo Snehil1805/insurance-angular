@@ -1,0 +1,157 @@
+<p>insurance-form works!</p>
+<div class="form-container">
+  <form [formGroup]="insuranceForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="policyNumber">Policy Number:</label>
+      <input type="text" id="policyNumber" formControlName="policyNumber" />
+      <div
+        *ngIf="
+          insuranceForm.get('policyNumber')?.hasError('required') &&
+          insuranceForm.get('policyNumber')?.touched
+        "
+        class="error"
+      >
+        Policy Number is required.
+      </div>
+      <div
+        *ngIf="
+          insuranceForm.controls['policyNumber'].invalid &&
+          insuranceForm.controls['policyNumber'].touched
+        "
+        class="error"
+      >
+        Policy Number Must be Unique.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="expectedDelivery">Policy Holder</label>
+      <input type="text" id="policyHolder" formControlName="policyHolder" />
+      <div
+        *ngIf="
+          insuranceForm.get('policyHolder')?.hasError('required') &&
+          insuranceForm.get('policyHolder')?.touched
+        "
+        class="error"
+      >
+        Policy Holder is required.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="receiver">Type:</label>
+      <select name="type" id="type" formControlName="type">
+        <option value="Life Insurance">Life Insurance</option>
+        <option value="Home Insurance">Home Insurance</option>
+        <option value="Car Insurance">Car Insurance</option>
+      </select>
+      <div
+        *ngIf="
+          insuranceForm.get('type')?.hasError('required') &&
+          insuranceForm.get('type')?.touched
+        "
+        class="error"
+      >
+        Type is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="receiver">Premium Amount:</label>
+      <input type="number" id="premiumAmount" formControlName="premiumAmount" />
+      <div
+        *ngIf="
+          insuranceForm.get('premiumAmount')?.hasError('required') &&
+          insuranceForm.get('premiumAmount')?.touched
+        "
+        class="error"
+      >
+        Premium Amount is required.
+      </div>
+      <div
+        *ngIf="
+          insuranceForm.controls['premiumAmount']?.touched &&
+          insuranceForm.get('premiumAmount')?.hasError('notPositive')
+        "
+        class="error"
+      >
+        Premium Amount must be greater than 0.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="policyStartDate">Policy StartDate:</label>
+      <input
+        type="text"
+        id="policyStartDate"
+        formControlName="policyStartDate"
+      />
+      <div
+        *ngIf="
+          insuranceForm.get('policyStartDate')?.hasError('required') &&
+          insuranceForm.get('policyStartDate')?.touched
+        "
+        class="error"
+      >
+        Policy StartDate is required.
+      </div>
+      <div
+        *ngIf="
+          insuranceForm.controls['policyStartDate'].invalid &&
+          (insuranceForm.controls['policyStartDate'].dirty ||
+            insuranceForm.controls['policyStartDate'].touched)
+        "
+        class="error"
+      >
+        Policy StartDate must be in YYYY-MM-DD format.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="policyEndDate">Policy EndDate:</label>
+      <input type="text" id="policyEndDate" formControlName="policyEndDate" />
+      <div
+        *ngIf="
+          insuranceForm.get('policyEndDate')?.hasError('required') &&
+          insuranceForm.get('policyEndDate')?.touched
+        "
+        class="error"
+      >
+        Policy EndDate is required.
+      </div>
+      <div
+        *ngIf="
+          insuranceForm.controls['policyEndDate'].invalid &&
+          (insuranceForm.controls['policyEndDate'].dirty ||
+            insuranceForm.controls['policyEndDate'].touched)
+        "
+        class="error"
+      >
+        Policy EndDate must be in YYYY-MM-DD format.
+      </div>
+      <div
+        *ngIf="
+            insuranceForm.errors?.['dateRangeInvalid'] && insuranceForm.get('policyStartDate')?.touched && insuranceForm.get('policyEndDate')?.touched
+          "
+        class="error"
+      >
+        End date must be greater than or equal to start date
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="organizer">Benefits:</label>
+      <input type="text" id="benefits" formControlName="benefits" />
+      <div
+        *ngIf="
+          insuranceForm.get('benefits')?.hasError('required') &&
+          insuranceForm.get('benefits')?.touched
+        "
+        class="error"
+      >
+        Benefits Count is required.
+      </div>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,11 @@
+<div class="event" *ngFor="let insurance of insurance$ | async">
+  <p>Policy Number : {{ insurance.policyNumber }}</p>
+  <p>Policy Holder : {{ insurance.policyHolder }}</p>
+  <p>Type : {{ insurance.type }}</p>
+  <p>Premium Amount : {{ insurance.premiumAmount }}</p>
+  <p>
+    Policy StartDate : {{ insurance.policyStartDate | date : "YYYY-MM-dd" }}
+  </p>
+  <p>Policy EndDate : {{ insurance.policyEndDate | date : "YYYY-MM-dd" }}</p>
+  <p>Benefits : {{ insurance.benefits }}</p>
+</div>

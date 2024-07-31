@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-between mt-4">
+  <h2 class="mb-0">Insurance</h2>
+  <button class="btn btn-primary col-md-2" [routerLink]="['/insurance-form']">
+    Add New Insurance
+  </button>
+</div>
+<div class="d-flex justify-content-between mt-4">
+  <div class="form-group d-flex">
+    <input
+      type="text"
+      (input)="searchInsurance($event)"
+      class="form-control mr-2"
+      placeholder="Search with  Id"
+    />
+  </div>
+</div>
+
+<div class="container mt-4">
+  <table class="table">
+    <thead>
+      <th>Policy Number</th>
+      <th>Policy Holder</th>
+      <th>Type</th>
+      <th>Premium Amount</th>
+      <th>Policy StartDate</th>
+      <th>Policy EndDate</th>
+      <th>Benefits</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let insurance of filteredInsurance$ | async">
+        <td>{{ insurance.policyNumber }}</td>
+        <td>{{ insurance.policyHolder }}</td>
+        <td>{{ insurance.type }}</td>
+        <td>{{ insurance.premiumAmount }}</td>
+        <td>{{ insurance.policyStartDate | date : "YYYY-MM-dd" }}</td>
+        <td>{{ insurance.policyEndDate | date : "YYYY-MM-dd" }}</td>
+        <td>{{ insurance.benefits }}</td>
+        <td>
+          <button
+            [routerLink]="['/insurance-details/', insurance.id]"
+            class="btn btn-info btn-sm"
+      
+    >
+            View
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

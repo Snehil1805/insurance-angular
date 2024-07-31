@@ -1,0 +1,14 @@
+{
+  "insurance": [
+    {
+      "id": "7678",
+      "policyNumber": "1",
+      "policyHolder": "g",
+      "type": "Home Insurance",
+      "premiumAmount": 23423,
+      "policyStartDate": "2024-04-04",
+      "policyEndDate": "2024-05-08",
+      "benefits": "asfdas"
+    }
+  ]
+}
