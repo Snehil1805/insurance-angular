@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { Insurance } from '../models/insurance';
 import { Router } from '@angular/router';
-import { InsurenceService } from '../services/insurance.service';
+import { InsuranceService } from '../services/insurance.service';
 
 @Component({
   selector: 'app-insurance-form',
@@ -22,7 +22,7 @@ export class InsuranceFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private insuranceService: InsurenceService,
+    private insuranceService: InsuranceService,
     private router: Router
   ) {}
 

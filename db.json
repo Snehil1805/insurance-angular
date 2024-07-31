@@ -9,6 +9,16 @@
       "policyStartDate": "2024-04-04",
       "policyEndDate": "2024-05-08",
       "benefits": "asfdas"
+    },
+    {
+      "id": "4ad3",
+      "policyNumber": "xxx12xxx",
+      "policyHolder": "1231",
+      "type": "Car Insurance",
+      "premiumAmount": 324,
+      "policyStartDate": "2024-04-04",
+      "policyEndDate": "2024-05-08",
+      "benefits": "hhhh"
     }
   ]
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, map, of, toArray } from 'rxjs';
 import { Insurance } from '../models/insurance';
-import { InsurenceService } from '../services/insurance.service';
+import { InsuranceService } from '../services/insurance.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class InsuranceDetailsComponent implements OnInit {
   insurance$: Observable<Insurance[]> = of([]);
   constructor(
-    private service: InsurenceService,
+    private insuranceService: InsuranceService,
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
@@ -23,6 +23,6 @@ export class InsuranceDetailsComponent implements OnInit {
     });
   }
   getProfessor(id: any) {
-    this.insurance$ = this.service.getInsurance(id.toString());
+    this.insurance$ = this.insuranceService.getInsurance(id.toString());
   }
 }

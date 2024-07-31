@@ -6,7 +6,7 @@ import { Insurance } from '../models/insurance';
 @Injectable({
   providedIn: 'root',
 })
-export class InsurenceService {
+export class InsuranceService {
   private apiUrl = `http://localhost:3000`;
 
   constructor(private http: HttpClient) {}

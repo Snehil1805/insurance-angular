@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, map, of, toArray } from 'rxjs';
 import { Insurance } from '../models/insurance';
-import { InsurenceService } from '../services/insurance.service';
+import { InsuranceService } from '../services/insurance.service';
 
 @Component({
   selector: 'app-insurance-list',
@@ -12,17 +12,16 @@ export class InsuranceListComponent implements OnInit {
   filteredInsurance$: Observable<Insurance[]> = of([]);
   insurance$: Observable<Insurance[]> = of([]);
 
-  constructor(private insurance: InsurenceService) {}
+  constructor(private insuranceService: InsuranceService) {}
 
   ngOnInit(): void {
     this.getInsurances();
   }
 
   getInsurances() {
-    this.insurance$ = this.insurance.getInsurances();
+    this.insurance$ = this.insuranceService.getInsurances();
     this.filteredInsurance$ = this.insurance$;
     if (this.filteredInsurance$) {
-      this.filteredInsurance$.pipe(toArray());
       let insuranceArray;
       this.filteredInsurance$.subscribe((insu) => {
         insuranceArray = insu;
